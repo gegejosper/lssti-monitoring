@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    height: auto;
+    position: relative;
+    z-index: 2;
+}
+#kt_content{
+    padding-top:0px;
+}
