@@ -6,7 +6,7 @@
 		<!--begin::Wrapper-->
 		<div class="w-lg-500px p-10 p-lg-15 mx-auto">
 			<!--begin::Form-->
-			<form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="{{ route('login') }}" method="post">
+			<form class="form w-100" id="kt_sign_in_form" action="{{ route('login') }}" method="post">
 				@csrf
 				<!--begin::Heading-->
 				<div class="text-center mb-10">
@@ -19,6 +19,13 @@
 					<!--end::Link-->
 				</div>
 				<!--begin::Heading-->
+				@if($errors->count() != 0)
+					<div class="alert alert-danger">
+				        <x-auth-session-status class="mb-4" :status="session('status')" />
+						<!-- Validation Errors -->
+						<x-auth-validation-errors class="mb-4" :errors="$errors" /> 
+				     </div>
+				 @endif
 				<!--begin::Input group-->
 				<div class="fv-row mb-10">
 					<!--begin::Label-->
