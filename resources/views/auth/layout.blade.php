@@ -14,21 +14,21 @@
 			<!--begin::Authentication - Sign-in -->
 			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
 				<!--begin::Aside-->
-				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative login-left-side-bg">
+				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background:#E92404;">
 					<!--begin::Wrapper-->
 					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
-							<a href="../../demo1/dist/index.html" class="py-9 mb-5">
-								<img alt="Logo" src="{{asset(config('app.logo'))}}" class="h-60px" />
+							<a href="/" class="py-9 mb-5">
+								<img alt="Logo" src="{{asset(config('app.logo'))}}" class="h-150px" />
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #fff;">Welcome to {{config('app.name')}}</h1>
+							<p class="fw-bold fs-2 pb-5 pb-md-10" style="color: #fff;">Welcome <br> to</p>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #fff;">{{config('app.name')}}</p>
+							<h1 class="fw-bolder fs-2qx" style="color: #fff;">{{config('app.name')}}</h1>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->

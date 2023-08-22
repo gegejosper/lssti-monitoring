@@ -1,10 +1,14 @@
 /* #fbf805 */
 :root {
-    --main-color: #2596be;
-    --second-color: #76b5c5;
+    --main-color: #E92404;
+    --second-color: #E92404;
     --third-color:#063970;
     --font-main-color: #fff;
+    --theme-color:#E92404;
   }
+.bg-theme {
+    background-color:#E92404;
+}
 
 .header {
     display: flex;
@@ -106,4 +110,13 @@ a:hover {
 }
 .text-hover-primary:hover {
     color: var(--third-color) !important;
+}
+.menu-title {
+    color:var(--theme-color) !important;
+}
+.menu-title {
+    color:var(--theme-color) !important;
+}
+.menu-link:hover .menu-title, .menu-link:hover .svg-icon{
+    color:var(--third-color) !important;
 }

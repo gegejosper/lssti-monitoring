@@ -2,75 +2,90 @@
 <html lang="en">
 	<!--begin::Head-->
 	<head>
-		@include('layouts.meta')
+	@include('layouts.meta')
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
-	<body id="kt_body" class="header-fixed header-tablet-and-mobile-fixed toolbar-enabled toolbar-fixed aside-enabled aside-fixed" style="--kt-toolbar-height:55px;--kt-toolbar-height-tablet-and-mobile:55px">
+	<body id="kt_body" class="header-extended header-fixed header-tablet-and-mobile-fixed">
+		<!--begin::Theme mode setup on page load-->
+		<script>
+		var defaultThemeMode = "light"; 
+		var themeMode; 
+		if ( document.documentElement ) { 
+			if ( document.documentElement.hasAttribute("data-bs-theme-mode")) { 
+				themeMode = document.documentElement.getAttribute("data-bs-theme-mode"); 
+			} else { 
+				
+				if ( localStorage.getItem("data-bs-theme") !== null ) { 
+					themeMode = localStorage.getItem("data-bs-theme"); 
+				} else { 
+					themeMode = defaultThemeMode; 
+				} 
+			} 
+			if (themeMode === "system") { 
+				themeMode = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"; 
+			} 
+		document.documentElement.setAttribute("data-bs-theme", themeMode); 
+		} 
+		</script>
+		<!--end::Theme mode setup on page load-->
 		<!--begin::Main-->
 		<!--begin::Root-->
 		<div class="d-flex flex-column flex-root">
 			<!--begin::Page-->
 			<div class="page d-flex flex-row flex-column-fluid">
-				<!--begin::Aside-->
-				@include('layouts.aside')
-				<!--end::Aside-->
 				<!--begin::Wrapper-->
 				<div class="wrapper d-flex flex-column flex-row-fluid" id="kt_wrapper">
 					<!--begin::Header-->
-					<div id="kt_header" style="" class="header align-items-stretch">
+					@include('layouts.aside')
+					<!--end::Header-->
+					<!--begin::Toolbar-->
+					<div class="toolbar py-3 py-lg-6" id="kt_toolbar">
 						<!--begin::Container-->
-						<div class="container-fluid d-flex align-items-stretch justify-content-between">
-							<!--begin::Aside mobile toggle-->
-							<div class="d-flex align-items-center d-lg-none ms-n2 me-2" title="Show aside menu">
-								<div class="btn btn-icon btn-active-light-primary w-30px h-30px w-md-40px h-md-40px" id="kt_aside_mobile_toggle">
-									<!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
-									<span class="svg-icon svg-icon-1">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-											<path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z" fill="currentColor" />
-											<path opacity="0.3" d="M21 14H3C2.4 14 2 13.6 2 13V11C2 10.4 2.4 10 3 10H21C21.6 10 22 10.4 22 11V13C22 13.6 21.6 14 21 14ZM22 20V18C22 17.4 21.6 17 21 17H3C2.4 17 2 17.4 2 18V20C2 20.6 2.4 21 3 21H21C21.6 21 22 20.6 22 20Z" fill="currentColor" />
-										</svg>
-									</span>
-									<!--end::Svg Icon-->
-								</div>
-							</div>
-							<!--end::Aside mobile toggle-->
-							<!--begin::Mobile logo-->
-							<div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-								<a href="/" class="d-lg-none">
-									<img alt="Logo" src="{{asset('assets/media/logos/logo-2.svg')}}" class="h-30px" />
-								</a>
-							</div>
-							<!--end::Mobile logo-->
-							<!--begin::Wrapper-->
-							<div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
-								<!--begin::Navbar-->
-								<div class="d-flex align-items-stretch" id="kt_header_nav">
-								<h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">{{isset($page_name) ? $page_name : ''}} </h1>
-								</div>
-								<!--end::Navbar-->
+						<div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap gap-2">
+							<!--begin::Page title-->
+							<div class="page-title d-flex flex-column align-items-start me-3 py-2 py-lg-0 gap-2">
+								<!--begin::Title-->
+								<h1 class="d-flex text-dark fw-bold m-0 fs-3">{{isset($page_name) ? $page_name : ''}} 
 								
+								<!--end::Title-->
 							</div>
-							<!--end::Wrapper-->
+							<!--end::Page title-->
+							
 						</div>
 						<!--end::Container-->
 					</div>
-					<!--end::Header-->
-					<!--begin::Content-->
-					@yield('content')
-					
-					<!--end::Content-->
+					<!--end::Toolbar-->
+					<!--begin::Container-->
+					<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+						@yield('content')
+						
+					</div>
+					<!--end::Container-->
 					<!--begin::Footer-->
 					<div class="footer py-4 d-flex flex-lg-column" id="kt_footer">
 						<!--begin::Container-->
-						<div class="container-fluid d-flex flex-column flex-md-row align-items-center justify-content-between">
+						<div class="container-xxl d-flex flex-column flex-md-row align-items-center justify-content-between">
 							<!--begin::Copyright-->
 							<div class="text-dark order-2 order-md-1">
-								<span class="text-muted fw-bold me-1">2022©</span>
-								<a href="https://azway.ph" target="_blank" class="text-gray-800 text-hover-primary">AZWay.ph</a>
+								<span class="text-muted fw-semibold me-1">2023 &copy; </span>
+								<a href="https://keenthemes.com" target="_blank" class="text-gray-800 text-hover-primary">BSCS IV</a>
 							</div>
 							<!--end::Copyright-->
-							
+							<!--begin::Menu-->
+							<!--
+							<ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+								<li class="menu-item">
+									<a href="https://keenthemes.com" target="_blank" class="menu-link px-2">About</a>
+								</li>
+								<li class="menu-item">
+									<a href="https://devs.keenthemes.com" target="_blank" class="menu-link px-2">Support</a>
+								</li>
+								<li class="menu-item">
+									<a href="https://1.envato.market/EA4JP" target="_blank" class="menu-link px-2">Purchase</a>
+								</li>
+							</ul> -->
+							<!--end::Menu-->
 						</div>
 						<!--end::Container-->
 					</div>
@@ -81,46 +96,47 @@
 			<!--end::Page-->
 		</div>
 		<!--end::Root-->
-		<!--begin::Drawers-->
 		
-		
-		<!--end::Drawers-->
 		<!--end::Main-->
-		<!--begin::Engage drawers-->
-		
-		<!--end::Engage toolbar-->
 		<!--begin::Scrolltop-->
 		<div id="kt_scrolltop" class="scrolltop" data-kt-scrolltop="true">
-			<!--begin::Svg Icon | path: icons/duotune/arrows/arr066.svg-->
-			<span class="svg-icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-					<rect opacity="0.5" x="13" y="6" width="13" height="2" rx="1" transform="rotate(90 13 6)" fill="currentColor" />
-					<path d="M12.5657 8.56569L16.75 12.75C17.1642 13.1642 17.8358 13.1642 18.25 12.75C18.6642 12.3358 18.6642 11.6642 18.25 11.25L12.7071 5.70711C12.3166 5.31658 11.6834 5.31658 11.2929 5.70711L5.75 11.25C5.33579 11.6642 5.33579 12.3358 5.75 12.75C6.16421 13.1642 6.83579 13.1642 7.25 12.75L11.4343 8.56569C11.7467 8.25327 12.2533 8.25327 12.5657 8.56569Z" fill="currentColor" />
-				</svg>
-			</span>
-			<!--end::Svg Icon-->
+			<i class="ki-duotone ki-arrow-up">
+				<span class="path1"></span>
+				<span class="path2"></span>
+			</i>
 		</div>
 		<!--end::Scrolltop-->
-		
-		
+
 		<!--begin::Javascript-->
-		<script>var hostUrl = "assets/";</script>
-		<!--begin::Global Javascript Bundle(used by all pages)-->
+		<script>var hostUrl = "assets/"; </script>
+		<!--begin::Global Javascript Bundle(mandatory for all pages)-->
 		<script src="{{asset('assets/plugins/global/plugins.bundle.js')}}"></script>
 		<script src="{{asset('assets/js/scripts.bundle.js')}}"></script>
 		<!--end::Global Javascript Bundle-->
-		<!--begin::Page Vendors Javascript(used by this page)-->
+		<!--begin::Vendors Javascript(used for this page only)-->
 		<script src="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js')}}"></script>
+		<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/radar.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/continentsLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/usaLow.js"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZonesLow.js')}}"></script>
+		<script src="https://cdn.amcharts.com/lib/5/geodata/worldTimeZoneAreasLow.js')}}"></script>
 		<script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
-		<!--end::Page Vendors Javascript-->
-		<!--begin::Page Custom Javascript(used by this page)-->
+		<!--end::Vendors Javascript-->
+		<!--begin::Custom Javascript(used for this page only)-->
 		<script src="{{asset('assets/js/widgets.bundle.js')}}"></script>
 		<script src="{{asset('assets/js/custom/widgets.js')}}"></script>
 		<script src="{{asset('assets/js/custom/apps/chat/chat.js')}}"></script>
 		<script src="{{asset('assets/js/custom/utilities/modals/upgrade-plan.js')}}"></script>
+		<script src="{{asset('assets/js/custom/utilities/modals/create-campaign.js')}}"></script>
 		<script src="{{asset('assets/js/custom/utilities/modals/create-app.js')}}"></script>
 		<script src="{{asset('assets/js/custom/utilities/modals/users-search.js')}}"></script>
-		<!--end::Page Custom Javascript-->
+		<!--end::Custom Javascript-->
 		<!--end::Javascript-->
 	</body>
 	<!--end::Body-->

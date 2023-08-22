@@ -35,7 +35,22 @@
 								<div class="card-body">
 								
 									<div class="form-group row">
-										
+										<div class="col-lg-6">
+											<h4>SMS Message Template</h4>
+											
+												@csrf
+												
+													<div class="form-group row">
+														<div class="col-lg-12">
+															<label>Message:</label>
+															<textarea name="message" id="message" cols="20" rows="10" class="form-control" >{{$settings->sms_message}}
+															</textarea>
+															<span class="form-text text-muted">Message update</span>
+														</div>
+														
+													</div>
+													
+										</div>
 									</div>
 								</div>
 								<div class="card-footer">

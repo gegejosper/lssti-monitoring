@@ -12,7 +12,7 @@
 <link rel="canonical" href="{{config('app.url')}}" />
 <link rel="icon shortcut" href="{{asset('assets/img/favicon.ico')}}" />
 <!--begin::Fonts-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
 <!--end::Fonts-->
 <!--begin::Page Vendor Stylesheets(used by this page)-->
 <link href="{{asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css')}}" rel="stylesheet" type="text/css" />
@@ -27,3 +27,4 @@
 <script type="text/javascript">
 	const asset_url = "{{asset('images')}}";
 </script>
+

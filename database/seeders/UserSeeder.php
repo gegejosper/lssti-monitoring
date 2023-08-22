@@ -39,17 +39,5 @@ class UserSeeder extends Seeder
             // ]);
             $user->roles()->attach($role);
         }
-        // $admin = User::create([
-        //     'name' => 'admin',
-        //     'username' => 'admin',
-        //     'email' => 'admin@tms.ph',
-        //     'password' => Hash::make('password'),
-        //     'status' => 'active'
-        // ]);
-        // $insert_role_admin = Role_user::create([
-        //     'role_id' => $admin_role->id,
-        //     'user_id' => $admin->id
-        // ]);
-        //$admin->roles()->attach($admin_role);
     }
 }
