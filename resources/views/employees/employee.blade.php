@@ -16,8 +16,8 @@
                             <!--begin::Summary-->
                             <div class="d-flex flex-center flex-column mb-5">
                                 <!--begin::Avatar-->
-                                <div class="symbol symbol-100px symbol-circle mb-7 text-center">
-                                <?php 
+                                <div class="mb-7 text-center">
+                                <!-- <?php 
                                     $url = config('app.url').'/employee/'.$employee->id.'/'.$employee->id_number;
                                     function encodeURIComponent($str){
                                     $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
@@ -31,12 +31,12 @@
         
                                     // let's display the generated QR code
                                     echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'></a>";
-                                ?>
+                                ?> -->
                                 <!-- <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="image"> --> <br>
-                                <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$employee->id}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary" print><i class="fa fa-print text-dark"> </i></a> 
+                                <!-- <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$employee->id}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary" print><i class="fa fa-print text-dark"> </i></a>  -->
                                 <!-- <a href="/employees/qrcode?url='<?php encodeURIComponent($qr_code);?>'" target="_blank" class="btn btn-xs btn-icon btn-danger"><i class="fa fa-save text-dark"> </i></a>  -->
 
-                                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($employee->id)) !!} ">
+                                <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($employee->id)) !!} " class="img-thumbnail">
                                 <br>
                                 <a onclick="PrintImage('data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($employee->id)) !!} ')" class="btn btn-xs btn-icon btn-primary mt-5" print><i class="fa fa-print"> </i></a> 
                                 </div>

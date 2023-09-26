@@ -8,9 +8,10 @@ use App\Models\Setting;
 use App\Models\Application;
 use App\Models\User;
 use App\Models\Role;
-use App\Models\Plan;
-use App\Models\Package;
+use App\Models\Visitor;
+use App\Models\EmployeeLog;
 use App\Models\Employee;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,8 +20,11 @@ class AdminController extends Controller
     //
     public function dashboard(){
         $page_name = 'Dashboard';
-
-        return view('panel.admin.dashboard',compact('page_name'));
+        $visitors = Visitor::get();
+        $currentDate = Carbon::now()->toDateString();
+        $visitors = Visitor::latest()->whereDate('date_visit', $currentDate)->get();
+        $employees_log = EmployeeLog::with('employee_details')->latest()->whereDate('date_log', $currentDate)->get();
+        return view('panel.admin.dashboard',compact('page_name', 'employees_log', 'visitors'));
     }
     
     

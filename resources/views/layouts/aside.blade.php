@@ -155,7 +155,7 @@
                                             <!--end:Menu link-->
                                         </div>
                                         <!--begin:Menu item-->
-                                        <div data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ (request()->segment(3) == 'settings') ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
+                                        <div data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ (request()->segment(3) == 'settings' && request()->segment(4) == null) ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
                                             <!--begin:Menu link-->
                                             <a class="menu-link py-3" href="/panel/admin/settings">
                                                 <span class="svg-icon menu-icon">

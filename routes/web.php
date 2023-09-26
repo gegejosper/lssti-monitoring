@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('index');
 // });
 Route::get('/unknown_user', 'FrontController@unknown_user');
+Route::get('/scan/employee/{employee_id}', 'FrontController@scan_employee');
 Route::get('/', 'FrontController@index');
+Route::post('/save/record', 'FrontController@save_record');
+Route::post('/save/employee/log', 'FrontController@save_employee_log');
+Route::post('/employee/return', 'FrontController@return_employee');
 Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
     Route::middleware('can:manage-admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('/', 'AdminController@dashboard')->name('dashboard');

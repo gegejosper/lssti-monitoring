@@ -96,4 +96,5 @@ class EmployeeController extends Controller
         Log::info($name.' modified '.$data->employee_fname.' '.$data->employee_lname.' into '.$req->employee_status);
         return response()->json($data);
     }
+    
 }
