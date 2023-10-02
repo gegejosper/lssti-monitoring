@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\QrCodeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,8 @@ Route::get('/', 'FrontController@index');
 Route::post('/save/record', 'FrontController@save_record');
 Route::post('/save/employee/log', 'FrontController@save_employee_log');
 Route::post('/employee/return', 'FrontController@return_employee');
+Route::get('/generate-qr-code/{text}', 'GlobalController@generateQrCode')->name('generate-qr-code');
+Route::get('/qrcode_print/{id}', 'GlobalController@generateQrCode')->name('qr-code-print');
 Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
     Route::middleware('can:manage-admin')->prefix('admin')->name('admin.')->group(function() {
         Route::get('/', 'AdminController@dashboard')->name('dashboard');

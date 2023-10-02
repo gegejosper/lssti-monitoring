@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
+
 
 class GlobalController extends Controller
 {
@@ -70,5 +75,40 @@ class GlobalController extends Controller
             $randomCharacters .= $characters[rand(0, strlen($characters) - 1)];
         }
         return $randomCharacters;
+    }
+    public function generateQrCode($text)
+    {
+        // Create an Imagick image backend
+    $imageBackend = new ImagickImageBackEnd();
+
+    // Create a renderer with a style (adjust as needed)
+    $renderer = new ImageRenderer(
+        new RendererStyle(400),
+        $imageBackend
+    );
+
+    // Create a writer with the renderer
+    $writer = new Writer($renderer);
+
+    // Generate the QR code and save it to a file
+    $filename = 'qrcode.png';
+    $writer->writeFile($text, $filename);
+
+    // Get the binary data of the QR code image
+    $imageData = file_get_contents($filename);
+
+    // Return the QR code image as a response with the appropriate content type
+    return response($imageData)->header('Content-Type', 'image/png');
+    }
+    public function qrcode_print($text){
+        $renderer = new ImageRenderer(
+            new RendererStyle(400),
+            new ImagickImageBackEnd()
+        );
+        $writer = new Writer($renderer);
+        $imageData = $writer->writeString($text);
+    
+        // Return the QR code image data
+        return view('employees.qr-code', compact('imageData'));
     }
 }
