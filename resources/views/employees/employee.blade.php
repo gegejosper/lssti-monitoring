@@ -18,17 +18,18 @@
                                 <!--begin::Avatar-->
                                 <div class="mb-7 text-center">
                                 <?php 
-                                    $url = config('app.url').'/employee/'.$employee->id;
+                                    //$url = config('app.url').'/employee/'.$employee->id;
+                                    $code = $employee->id;
                                    
                                     // add the string in the Google Chart API URL
-                                    $google_chart_api_url = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$url."&choe=UTF-8";
+                                    $google_chart_api_url = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$code."&choe=UTF-8";
         
                                     // let's display the generated QR code
                                     echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'></a>";
                                 ?>
                                 <!-- <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="image"> --> 
                                 <br>
-                                <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$employee->id}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary" ><i class="fa fa-print text-dark"> </i></a> 
+                                <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$code}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary" ><i class="fa fa-print text-dark"> </i></a> 
                                
                               
                                 </div>
