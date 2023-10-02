@@ -17,15 +17,20 @@
                             <div class="d-flex flex-center flex-column mb-5">
                                 <!--begin::Avatar-->
                                 <div class="mb-7 text-center">
-                                @php 
-                                $image = route('generate-qr-code', ['text' => $employee->id]);
-                                @endphp
-                                <!-- <img src="{{$image}}" alt="QR Code"  class="img-thumbnail"> -->
-                                <img id="qrCodeImage" src="{{$image}}" alt="QR Code" class="img-thumbnail">
-                                <!-- <img src="data:image/png;base64,{{ base64_encode($image) }}" alt="QR Code"> -->
-                              
+                                <?php 
+                                    $url = config('app.url').'/employee/'.$employee->id;
+                                   
+                                    // add the string in the Google Chart API URL
+                                    $google_chart_api_url = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$url."&choe=UTF-8";
+        
+                                    // let's display the generated QR code
+                                    echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'></a>";
+                                ?>
+                                <!-- <img src="https://randomuser.me/api/portraits/lego/1.jpg" alt="image"> --> 
                                 <br>
-                                <a onclick="printQRCode(this)" class="btn btn-xs btn-icon btn-primary mt-5" data-id= "{{$employee->id}}" print><i class="fa fa-print"> </i></a> 
+                                <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$employee->id}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary" ><i class="fa fa-print text-dark"> </i></a> 
+                               
+                              
                                 </div>
                                 <!--end::Avatar-->
                                 <!--begin::Name-->
@@ -337,36 +342,6 @@
      pwa.document.write(ImagetoPrint(source));
      pwa.document.close();
   }
-
-//   function printQRCode() {
-//         // Open a new window or tab with the QR code image
-//         var printWindow = window.open('', '_blank');
-//         printWindow.document.open();
-//         printWindow.document.write('<html><head><title>QR Code</title></head><body>');
-//         printWindow.document.write('<img src="' + document.getElementById('qrCodeImage').src + '" alt="QR Code">');
-//         printWindow.document.write('</body></html>');
-//         printWindow.document.close();
-
-//         // Trigger the print dialog for the new window or tab
-//         printWindow.print();
-//         printWindow.close();
-//     }
-
-    function printQRCode(element) {
-        let id = element.getAttribute('data-id');
-        let printWindow = window.open('/qrcode_print/' + id, '_blank');
-
-        // Wait for the new page to load
-        printWindow.onload = function () {
-            // Trigger the print dialog
-            printWindow.print();
-
-            // Close the window after a delay (e.g., 2 seconds)
-            setTimeout(function () {
-                printWindow.close();
-            }, 2000); // Adjust the delay as needed
-        };
-    }
 </script>
 <script src="{{asset('js/app.js')}}"></script>  
 <script src="{{asset('assets/js/employees.js')}}"></script>
