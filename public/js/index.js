@@ -5,7 +5,7 @@ const employeesList = document.querySelector('.employees-list');
 function buildEmployee(employees){
     if(employees.length != 0){
         const employee = employees[0];
-        $('#employeeModalSearch').modal('toggle');
+        $('#employeeModalSearch').modal('hide');
         $('#employee_id_number').val(employee.id_number);
         $('#employee_name').val(employee.lname + ', ' + employee.fname);
         $('#employee_id').val(employee.id);
