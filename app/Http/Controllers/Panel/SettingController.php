@@ -16,6 +16,7 @@ class SettingController extends Controller
         $setting->penalty = $req->penalty_amount;
         $setting->hours = $req->hours;
         $setting->enable_sms = $req->enable_sms;
+        $setting->contact_number = $req->contact_number;
         $setting->save();
         return redirect()->back()->with('success','Settings updated successfully');
     }

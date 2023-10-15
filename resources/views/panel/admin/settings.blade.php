@@ -48,7 +48,11 @@
 													<input type="text" id="penalty_amount" name="penalty_amount" class="form-control" value="{{$settings->penalty}}">
 													<label>Hours For Penalty:</label>
 													<input type="text" id="hours" name="hours" class="form-control" value="{{$settings->hours}}">
-												
+													<label>Penalty Amount:</label>
+													<input type="text" id="penalty_amount" name="penalty_amount" class="form-control" value="{{$settings->penalty}}">
+													<label>Contact Number:</label>
+													<input type="text" id="contact_number" name="contact_number" class="form-control" value="{{$settings->contact_number}}">
+
 													<label>Enable SMS?</label>
                                                     <select name="enable_sms" id="enable_sms" class="form-control">
                                                     <option value="{{$settings->enable_sms}}">{{ucfirst($settings->enable_sms)}}</option>
