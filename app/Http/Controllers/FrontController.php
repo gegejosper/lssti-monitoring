@@ -61,6 +61,7 @@ class FrontController extends Controller
         }
     }
     public function save_employee_log(Request $req){
+        $setting = Setting::first();
         $validator = Validator::make($req->all(), [
             'id' => 'required',
             'purpose' => 'required',
