@@ -105,8 +105,7 @@
                                             </a>
                                             <!--end:Menu link-->
                                         </div>
-                                        <div data-kt-menu-placement="bottom-start" class="menu-item me-0 me-lg-2  {{ (request()->segment(2) == 'visitors') ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
-                                            <!--begin:Menu link-->
+                                        <!-- <div data-kt-menu-placement="bottom-start" class="menu-item me-0 me-lg-2  {{ (request()->segment(2) == 'visitors') ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
                                             <a class="menu-link py-3" href="/panel/admin/visitors">
                                                 <span class="svg-icon menu-icon">
                                                     <span class="svg-icon svg-icon-muted text-danger">
@@ -118,8 +117,7 @@
                                                 </span>
                                                 <span class="menu-title">Visitors</span>
                                             </a>
-                                            <!--end:Menu link-->
-                                        </div>
+                                        </div> -->
                                         <!--end:Menu item-->
                                         <!--begin:Menu item-->
                                          <div data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ (request()->segment(4) == 'users') ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
@@ -139,21 +137,7 @@
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
-                                        <div data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ (request()->segment(3) == 'reports') ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
-                                            <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="/panel/admin/reports">
-                                                <span class="svg-icon menu-icon">
-                                                    <span class="svg-icon svg-icon-muted text-danger">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                    <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor"/>
-                                                    <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor"/>
-                                                    </svg>
-                                                    </span>
-                                                </span>
-                                                <span class="menu-title">Reports</span>
-                                            </a>
-                                            <!--end:Menu link-->
-                                        </div>
+
                                         <!--begin:Menu item-->
                                         <div data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ (request()->segment(3) == 'settings' && request()->segment(4) == null) ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
                                             <!--begin:Menu link-->
@@ -171,7 +155,70 @@
                                             <!--end:Menu link-->
                                         </div>
                                         <!--end:Menu item-->
-                                        
+                                        <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion menu-sub-lg-down-indention me-0 me-lg-2 {{ request()->segment(3) == 'reports' ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
+                                            <!--begin:Menu link-->
+                                            <span class="menu-link py-3">
+                                                <span class="svg-icon menu-icon">
+                                                    <span class="svg-icon svg-icon-muted text-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                    <path d="M20 14H18V10H20C20.6 10 21 10.4 21 11V13C21 13.6 20.6 14 20 14ZM21 19V17C21 16.4 20.6 16 20 16H18V20H20C20.6 20 21 19.6 21 19ZM21 7V5C21 4.4 20.6 4 20 4H18V8H20C20.6 8 21 7.6 21 7Z" fill="currentColor"/>
+                                                    <path opacity="0.3" d="M17 22H3C2.4 22 2 21.6 2 21V3C2 2.4 2.4 2 3 2H17C17.6 2 18 2.4 18 3V21C18 21.6 17.6 22 17 22ZM10 7C8.9 7 8 7.9 8 9C8 10.1 8.9 11 10 11C11.1 11 12 10.1 12 9C12 7.9 11.1 7 10 7ZM13.3 16C14 16 14.5 15.3 14.3 14.7C13.7 13.2 12 12 10.1 12C8.10001 12 6.49999 13.1 5.89999 14.7C5.59999 15.3 6.19999 16 7.39999 16H13.3Z" fill="currentColor"/>
+                                                    </svg>
+                                                    </span>
+                                                </span>
+                                                <span class="menu-title">Reports</span>
+                                                <span class="menu-arrow d-lg-none"></span>
+                                            </span>
+                                            <!--end:Menu link-->
+                                            <!--begin:Menu sub-->
+                                            <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px" style="">
+                                                <!--begin:Menu item-->
+                                                <div class="menu-item">
+                                                    <a class="menu-link py-3" href="/panel/admin/reports/visitors" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right" data-bs-original-title="Check out over 200 in-house components, plugins and ready for use solutions" data-kt-initialized="1">
+                                                        <span class="menu-icon">
+                                                            <i class="ki-duotone ki-rocket fs-2">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </i>
+                                                        </span>
+                                                        <span class="menu-title">Visitors</span>
+                                                    </a>
+                                                </div>
+                                                <!--end:Menu item-->
+                                                <!--begin:Menu item-->
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link py-3" href="/panel/admin/reports/employees" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right" data-bs-original-title="Check out the complete documentation" data-kt-initialized="1">
+                                                        <span class="menu-icon">
+                                                            <i class="ki-duotone ki-abstract-26 fs-2">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </i>
+                                                        </span>
+                                                        <span class="menu-title">Employees</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu item-->
+                                                <!--begin:Menu item-->
+                                                <div class="menu-item">
+                                                    <!--begin:Menu link-->
+                                                    <a class="menu-link py-3" href="/panel/admin/reports/penalties" data-bs-toggle="tooltip" data-bs-trigger="hover" data-bs-dismiss="click" data-bs-placement="right" data-bs-original-title="Build your layout and export HTML for server side integration" data-kt-initialized="1">
+                                                        <span class="menu-icon">
+                                                            <i class="ki-duotone ki-switch fs-2">
+                                                                <span class="path1"></span>
+                                                                <span class="path2"></span>
+                                                            </i>
+                                                        </span>
+                                                        <span class="menu-title">Penalty</span>
+                                                    </a>
+                                                    <!--end:Menu link-->
+                                                </div>
+                                                <!--end:Menu item-->
+                                                
+                                            </div>
+                                            <!--end:Menu sub-->
+                                        </div>
                                         <!--begin:Menu item-->
                                         <div data-kt-menu-placement="bottom-start" class="menu-item menu-lg-down-accordion me-0 me-lg-2 {{ (request()->segment(2) == 'reports') ? 'here show menu-here-bg menu-lg-down-accordion' : '' }}">
                                             <!--begin:Menu link-->

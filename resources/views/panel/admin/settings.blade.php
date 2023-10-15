@@ -30,26 +30,35 @@
 						<!--end::Header-->
 						<!--begin::Body-->
 						<div class="card-body pt-0 pb-3">
-							<form class="form" action="" method="post">
+							<form class="form" action="{{route('panel.admin.update_setting')}}" method="post">
 								@csrf
 								<div class="card-body">
-								
 									<div class="form-group row">
 										<div class="col-lg-6">
 											<h4>SMS Message Template</h4>
-											
-												@csrf
+											@csrf
+											<div class="form-group row">
+												<div class="col-lg-12">
+													<label>Message:</label>
+													<textarea name="message" id="message" cols="20" rows="10" class="form-control" >{{$settings->sms_message}}
+													</textarea>
+													<span class="form-text text-muted">Message update</span>
+													<br>	
+													<label>Penalty Amount:</label>
+													<input type="text" id="penalty_amount" name="penalty_amount" class="form-control" value="{{$settings->penalty}}">
+													<label>Hours For Penalty:</label>
+													<input type="text" id="hours" name="hours" class="form-control" value="{{$settings->hours}}">
 												
-													<div class="form-group row">
-														<div class="col-lg-12">
-															<label>Message:</label>
-															<textarea name="message" id="message" cols="20" rows="10" class="form-control" >{{$settings->sms_message}}
-															</textarea>
-															<span class="form-text text-muted">Message update</span>
-														</div>
-														
-													</div>
-													
+													<label>Enable SMS?</label>
+                                                    <select name="enable_sms" id="enable_sms" class="form-control">
+                                                    <option value="{{$settings->enable_sms}}">{{ucfirst($settings->enable_sms)}}</option>
+                                                    <option value="yes">Yes</option>
+                                                    <option value="no">No</option>
+                                                    </select>
+                                              
+                                           
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -57,6 +66,7 @@
 									<div class="row">
 										
 										<div class="col-lg-12 text-center">
+											<input type="hidden" id="setting_id" name="setting_id" value="{{$settings->id}}">
 											<button type="submit" class="btn btn-primary mr-2"><i class="fas fa-save"></i> Save</button>
 										</div>
 									</div>

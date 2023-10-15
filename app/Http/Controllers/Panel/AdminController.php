@@ -55,8 +55,68 @@ class AdminController extends Controller
         $page_name = 'Backup';
         return view('panel.admin.backup',compact('page_name'));
     }
-    public function reports(){
+    public function report_employees(){
         $page_name = 'Reports';
-        return view('panel.admin.reports',compact('page_name'));
+        $employee_logs =EmployeeLog::with('employee_details')->get();
+        return view('panel.admin.reports.employees',compact('page_name', 'employee_logs'));
+    }
+    public function report_employee_range(Request $req){
+        $page_name = 'Reports';
+        $from_date = null;
+        $to_date = null;
+        if (isset($req->from_date) && isset($req->to_date)) {
+            $from_date = Carbon::parse($req->from_date . ' 00:00:00');
+            $to_date = Carbon::parse($req->to_date . ' 23:59:59');
+        }
+        $employee_logs =EmployeeLog::with('employee_details')
+            ->when($from_date && $to_date, function ($query) use ($from_date, $to_date) {
+                return $query->whereBetween('created_at', [$from_date->toDateTimeString(), $to_date->toDateTimeString()]);
+            })
+            ->get();
+        return view('panel.admin.reports.employees',compact('page_name', 'employee_logs', 'from_date', 'to_date'));
+    }
+
+    public function report_visitors(){
+        $page_name = 'Reports';
+        $visitors =Visitor::get();
+        return view('panel.admin.reports.visitors',compact('page_name', 'visitors'));
+    }
+    public function report_visitors_range(Request $req){
+        $page_name = 'Reports';
+        $from_date = null;
+        $to_date = null;
+        if (isset($req->from_date) && isset($req->to_date)) {
+            $from_date = Carbon::parse($req->from_date . ' 00:00:00');
+            $to_date = Carbon::parse($req->to_date . ' 23:59:59');
+        }
+        $visitors = Visitor::when($from_date && $to_date, function ($query) use ($from_date, $to_date) {
+                return $query->whereBetween('created_at', [$from_date->toDateTimeString(), $to_date->toDateTimeString()]);
+            })
+            ->get();
+        return view('panel.admin.reports.visitors',compact('page_name', 'visitors', 'from_date', 'to_date'));
+    }
+    public function report_penalties(){
+        $page_name = 'Reports';
+        $employee_logs =EmployeeLog::groupBy('employee_id')
+        ->selectRaw('employee_id, MAX(created_at) as max_created_at')
+        ->selectRaw('SUM(penalty_amount) as total_penalty')
+        ->with('employee_details')->get();
+        //dd($employee_logs);
+        return view('panel.admin.reports.penalties',compact('page_name', 'employee_logs'));
+    }
+    public function report_penalties_range(Request $req){
+        $page_name = 'Reports';
+        $from_date = null;
+        $to_date = null;
+        if (isset($req->from_date) && isset($req->to_date)) {
+            $from_date = Carbon::parse($req->from_date . ' 00:00:00');
+            $to_date = Carbon::parse($req->to_date . ' 23:59:59');
+        }
+        $employee_logs =EmployeeLog::with('employee_details')
+            ->when($from_date && $to_date, function ($query) use ($from_date, $to_date) {
+                return $query->whereBetween('created_at', [$from_date->toDateTimeString(), $to_date->toDateTimeString()]);
+            })
+            ->get();
+        return view('panel.admin.reports.penalties',compact('page_name', 'employee_logs', 'from_date', 'to_date'));
     }
 }

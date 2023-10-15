@@ -69,6 +69,7 @@ $(document).ready(function() {
                   'employee_id_number': $('input[name=edit_employee_id_number]').val(),
                   'employee_lname': $('input[name=edit_employee_lname]').val(),
                   'employee_position': $('input[name=edit_employee_position]').val(),
+                  'employee_department': $('input[name=edit_employee_department]').val(),
                   'employee_id': $('input[name=edit_employee_id]').val()
               },
               success: function(data) {
@@ -76,14 +77,15 @@ $(document).ready(function() {
                 
                 $('.row'+ data.id).replaceWith(`
                 <tr class="row${data.id}">
-                    <td>
-                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.id_number}</span>
-                    </td>
+                    <td>${data.id_number}</td>
                     <td>
                         <a href="/panel/admin/employees/${data.id}" class="text-dark-75 font-weight-bolder text-hover-primary mb-1 font-size-lg">${data.lname}, ${data.fname} ${data.mname}</a>
                     </td>
                     <td>
                         <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.position}</span>
+                    </td>
+                    <td>
+                        <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.department}</span>
                     </td>
                     <td>
                         <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.status}</span>
@@ -142,7 +144,8 @@ $(document).ready(function() {
           });
     });
     
-    $("#addEmployee").click(function(data) {
+    $(document).on('submit', '#addEmployeeForm', function(e) {
+        e.preventDefault();
           $.ajax({
               type: 'post',
               url: '/panel/admin/employees/add',
@@ -151,6 +154,7 @@ $(document).ready(function() {
                   'employee_fname': $('input[name=employee_fname]').val(),
                   'employee_lname': $('input[name=employee_lname]').val(),
                   'employee_mname': $('input[name=employee_mname]').val(),
+                  'employee_department': $('input[name=employee_department]').val(),
                   'employee_id_number': $('input[name=employee_id_number]').val(),
                   'employee_position': $('input[name=employee_position]').val()
               },
@@ -163,6 +167,9 @@ $(document).ready(function() {
                         </td>
                         <td>
                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.position}</span>
+                        </td>
+                        <td>
+                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.department}</span>
                         </td>
                         <td>
                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">${data.status}</span>
@@ -189,9 +196,10 @@ $(document).ready(function() {
                         </td>
                     </tr>
                 `);
-                $('#employee_name').val('');
-                $('#employee_description').val('');
-                $('#employee_price').val(0);
+                $('#employee_id_number').val('');
+                $('#employee_fname').val('');
+                $('#employee_mname').val('');
+                $('#employee_lname').val('');
                 $('#addEmployeeModal').modal('toggle');
                 toastr.options = {
                     "closeButton": false,

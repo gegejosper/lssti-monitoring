@@ -30,7 +30,13 @@ Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
         Route::get('/', 'AdminController@dashboard')->name('dashboard');
 
         Route::get('/settings', 'AdminController@settings')->name('settings');     
-        Route::get('/reports', 'AdminController@reports')->name('reports');     
+        Route::post('/settings/update', 'SettingController@update_setting')->name('update_setting');     
+        Route::get('/reports/employees', 'AdminController@report_employees')->name('report_employees');    
+        Route::post('/reports/employees/range', 'AdminController@report_employee_range')->name('report_employee_range');
+        Route::get('/reports/visitors', 'AdminController@report_visitors')->name('report_visitors'); 
+        Route::post('/reports/visitors/range', 'AdminController@report_visitors_range')->name('report_visitors_range'); 
+        Route::get('/reports/penalties', 'AdminController@report_penalties')->name('report_penalties'); 
+        Route::post('/reports/penalties/range', 'AdminController@report_penalties_range')->name('report_penalties_range');        
         Route::get('/settings/roles', 'AdminController@roles')->name('roles');  
         Route::get('/settings/backup', 'AdminController@backup')->name('backup');        
         Route::get('/settings/backup/users', 'BackupController@backup_users')->name('backup_users');        

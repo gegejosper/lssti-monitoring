@@ -30,6 +30,7 @@
                                             <span class="text-dark-75">Name</span>
                                         </th>
                                         <th style="min-width: 100px">Position</th>
+                                        <th style="min-width: 100px">Department</th>
                                         <th style="min-width: 100px">Status</th>
                                         <th style="min-width: 80px"></th>
                                     </tr>
@@ -43,6 +44,9 @@
                                         </td>
                                         <td>
                                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$employee->position}}</span>
+                                        </td>
+                                        <td>
+                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$employee->department}}</span>
                                         </td>
                                         <td>
                                             <span class="text-dark-75 font-weight-bolder d-block font-size-lg">{{$employee->status}}</span>
@@ -111,45 +115,54 @@
             <div class="modal-body scroll-y mx-5 mx-xl-15 mt-7">
                 @csrf
                 <div class="errors"></div>
-                <div class="card-body">
+                <form id="addEmployeeForm">
+                    <div class="card-body">
                         <div class="form-group row mb-5">
                             <label class="col-lg-3 col-form-label">ID Number:</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control form-control-solid" placeholder="Employee ID Number " name="employee_id_number" id="employee_id_number">
-                               
+                                <input type="text" class="form-control form-control-solid" placeholder="Employee ID Number " name="employee_id_number" id="employee_id_number" required>
+                                
                             </div>
                         </div>
                         <div class="form-group row mb-5">
                             <label class="col-lg-3 col-form-label">First Name:</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control form-control-solid" placeholder="Employee first name " name="employee_fname" id="employee_fname">
+                                <input type="text" class="form-control form-control-solid" placeholder="Employee first name " name="employee_fname" id="employee_fname" required>
                             </div>
                         </div>
                         <div class="form-group row mb-5">
                             <label class="col-lg-3 col-form-label">Middle Name:</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control form-control-solid" placeholder="Employee middle name " name="employee_mname" id="employee_mname">
+                                <input type="text" class="form-control form-control-solid" placeholder="Employee middle name " name="employee_mname" id="employee_mname" required>
                             </div>
                         </div>
-						<div class="form-group row mb-5">
+                        <div class="form-group row mb-5">
                             <label class="col-lg-3 col-form-label">Last Name:</label>
                             <div class="col-lg-9">
-                               <input type="text" name="employee_lname" id="employee_lname" class="form-control form-control-solid" placeholder="Employee last name">
+                                <input type="text" name="employee_lname" id="employee_lname" class="form-control form-control-solid" placeholder="Employee last name" required>
+                            </div>
+                        </div>
+                        <div class="form-group row mb-5">
+                            <label class="col-lg-3 col-form-label">Department:</label>
+                            <div class="col-lg-9">
+                                <input type="text" class="form-control form-control-solid" placeholder="Employee's Department" name="employee_department" id="employee_department" required>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-lg-3 col-form-label">Position:</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control form-control-solid" placeholder="Employee's Position" name="employee_position" id="employee_position" >
+                                <input type="text" class="form-control form-control-solid" placeholder="Employee's Position" name="employee_position" id="employee_position" required>
                             </div>
                         </div>
-                    
-                </div>
+                        
+                    </div>
+                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
-                <button type="button" class="btn btn-primary btn-sm font-weight-bold" id="addEmployee"> <i class=" fas fa-save"></i> Save</button>
+                <button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-bs-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
+                <button type="submit" class="btn btn-primary btn-sm font-weight-bold" id="addEmployee"> <i class=" fas fa-save"></i> Save</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
@@ -200,6 +213,12 @@
                             <input type="text" name="edit_employee_lname" id="edit_employee_lname" placeholder="Employee last name" class="form-control form-control-solid">
                         </div>
                     </div>
+                    <div class="form-group row mb-5">
+                        <label class="col-lg-3 col-form-label">Department:</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control form-control-solid" placeholder="Employee's Department" name="edit_employee_department" id="edit_employee_department" >
+                        </div>
+                    </div>
                     <div class="form-group row">
                         <label class="col-lg-3 col-form-label">Position:</label>
                         <div class="col-lg-9">
@@ -241,7 +260,7 @@
             <div class="modal-footer">
             <input type="hidden" class="form-control" name="employee_modify_id" id="employee_modify_id">
             <input type="hidden" class="form-control" name="employee_modify_status" id="employee_modify_status">
-                <button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
+                <button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-bs-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
                 <button type="button" class="btn btn-success btn-sm font-weight-bold" id="modifyEmployee"> <i class=" fas fa-check"></i> Modify</button>
             </div>
         </div>
@@ -270,7 +289,7 @@
             </div>
             <div class="modal-footer">
            
-                <button type="button" class="btn btn-light-success btn-sm font-weight-bold closemodify" data-dismiss="modal"> <i class=" fas fa-check"></i> Close</button>
+                <button type="button" class="btn btn-light-success btn-sm font-weight-bold closemodify" data-bs-dismiss="modal"> <i class=" fas fa-check"></i> Close</button>
             </div>
         </div>
     </div>

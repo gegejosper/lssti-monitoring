@@ -83,19 +83,22 @@ $(document).ready(function() {
                 'id': $(this).data('log_id')
             },
             success: function(data) {
+                let hour_limit = parseInt($(this).data('hour_limit'));
+                let penalty_amount = parseInt($(this).data('hour_limit'));
                 // Replace 'totalSeconds' with the number of seconds you want to convert
                 let totalSeconds = data.time_consumed; // Example: 3600 seconds = 1 hour
-                console.log(data.time_consumed);
+                //console.log(data.time_consumed);
                 // Calculate hours and remaining seconds
                 let hours = Math.floor(totalSeconds / 3600);
                 let remainingSeconds = totalSeconds % 3600;
 
                 // Format the result as "X hours Y minutes Z seconds"
                 let result = hours + ' hours ' + Math.floor(remainingSeconds / 60) + ' minutes ' + (remainingSeconds % 60) + ' seconds';
-
+                
                 // Update the HTML element with the result
             $("#row_time_back_"+data.id).text(data.time_back);
             $("#row_time_consumed_"+data.id).text(result);
+            $("#row_penalty_"+data.id).text(data.penalty_amount);
             $("#row_status_"+data.id).text(data.status);
             $("#row_action_"+data.id).text('');
               toastr.options = {
@@ -115,7 +118,7 @@ $(document).ready(function() {
                   "showMethod": "fadeIn",
                   "hideMethod": "fadeOut"
               };
-              toastr.success("Employee's returned...");
+              toastr.success("Employee returned...");
             },
             error: function(data){
               var errors = data.responseJSON.errors;
@@ -236,6 +239,9 @@ $(document).ready(function() {
                       <td>
                           ${data.purpose}
                       </td>
+                      <td id="row_penalty_${data.id}">
+                          0
+                      </td>
                       <td id="row_status_${data.id}">
                           ${data.status}
                       </td>
@@ -292,6 +298,7 @@ $(document).ready(function() {
 function onScanSuccess(decodedText, decodedResult) {
     console.log(`Scan result: ${decodedText}`, decodedResult);
     searchScanEmployee(decodedText);
+    html5QrcodeScanner.clear();
 }
 
 var html5QrcodeScanner = new Html5QrcodeScanner(

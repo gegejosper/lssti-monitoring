@@ -82,8 +82,10 @@
 							<td>Time Out</td>
 							<td>Time Back</td>
 							<td>Time Consumed</td>
+							
 							<td>Name</td>
 							<td>Purpose</td>
+							<td>Penalty</td>
 							<td>Status</td>
 							<td></td>
 						</tr>
@@ -110,12 +112,15 @@
 								<td id="row_time_consumed_{{$log->id}}">{{$time_consumed_in_words}}</td>
 								<td>{{$log->employee_details->lname}}, {{$log->employee_details->fname}}</td>
 								<td>{{$log->purpose}}</td>
+								<td id="row_penalty_{{$log->id}}">{{$log->penalty_amount}}</td>
 								<td id="row_status_{{$log->id}}">{{$log->status}}</td>
 								<td id="row_action_{{$log->id}}">
 								@if($log->status != 'returned')
 									<a href="javascript:;" 
 										class="btn btn-icon btn-primary return_employee"
 										data-log_id="{{$log->id}}"
+										data-penalty_amount="{{$setting->penalty}}"
+										data-hour_limit="{{$setting->hours}}"
 										><i class="fa fa-reply"></i></a>
 								@endif
 								</td>
@@ -123,6 +128,7 @@
 							@endforeach
 						</tbody>
 					</table>
+					<em>Penalty amounting {{$setting->penalty}} pesos when the employee will not return in the next {{$setting->hours}} hour(s) from time out recorded.</em>
 				</div>
 
 			</div>

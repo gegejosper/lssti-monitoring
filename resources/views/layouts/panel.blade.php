@@ -6,7 +6,7 @@
 	</head>
 	<!--end::Head-->
 	<!--begin::Body-->
-	<body id="kt_body" class="header-extended header-fixed header-tablet-and-mobile-fixed">
+	<body id="kt_body" class="print-content-only header-extended header-fixed header-tablet-and-mobile-fixed">
 		<!--begin::Theme mode setup on page load-->
 		<script>
 		var defaultThemeMode = "light"; 

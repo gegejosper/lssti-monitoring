@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\EmployeeLog;
 use App\Models\Visitor;
+use App\Models\Setting;
 use Carbon\Carbon;
 use Response;
 use Validator;
@@ -17,9 +18,10 @@ class FrontController extends Controller
         $employees = Employee::where('status', 'active')->take(10)->get();
         $visitors = Visitor::get();
         $currentDate = Carbon::now()->toDateString();
+        $setting = Setting::first();
         $visitors = Visitor::latest()->whereDate('date_visit', $currentDate)->get();
         $employees_log = EmployeeLog::with('employee_details')->latest()->whereDate('date_log', $currentDate)->get();
-        return view('index', compact('employees', 'visitors', 'employees_log'));
+        return view('index', compact('employees', 'visitors', 'employees_log', 'setting'));
     }
     public function unknown_user(){
         return view('errors.unknown_user');
@@ -80,26 +82,71 @@ class FrontController extends Controller
             $data->time_consumed = 'n/a';
             $data->employee_id = $req->id;
             $data->purpose = strtoupper($req->purpose);
+            $data->penalty_amount = 0;
             $data->status = 'out';
             $data->save();
             $data->name =  $employee_name;
+            if($setting->enable_sms == 'yes'){
+                $this->send_sms($employee_name , 'returned');
+            }
             return response()->json($data);
         }
+
+        
     }
     public function return_employee(Request $req){
+        $setting = Setting::first();
 
-
-        $employee_log = EmployeeLog::find($req->id);
-        
+        $employee_log = EmployeeLog::with('employee_details')->find($req->id);
+        $employee_name = $employee_log->employee_details->lname.', '.$employee_log->employee_details->fname;
         $timeOut = Carbon::parse($employee_log->time_out);
         $timeBack = Carbon::now();
         $timeConsumed = $timeOut->diffInSeconds($timeBack);
+        
+        $hours = floor($timeConsumed / 3600);
+        $minutes = ($timeConsumed / 60) % 60;
+        //dd($hours);
+        $penalty = 0;
 
+        if($hours > $setting->hours){
+            $penalty = $setting->penalty;
+        }
         $employee_log->time_back = Carbon::now()->toTimeString();
         $employee_log->time_consumed = $timeConsumed;
         $employee_log->status ='returned';
+        $employee_log->penalty_amount = $penalty;
         $employee_log->save();
+        if($setting->enable_sms == 'yes'){
+            $this->send_sms($employee_name , 'returned');
+        }
+        
         return response()->json($employee_log);
+    }
+
+    public function send_sms($name, $logtype){
+        $setting = Setting::first();
+        $contact_number = $setting->contact_number;
+        $message = str_replace(
+            array("#EMPLOYEE_NAME#","#LOG_TYPE#"),
+            array($name, $logtype), $setting->sms_message);
+        $ch = curl_init();
+    
+        $parameters = array(
+            'apikey' => '61fdeb9ce3832a133c5a201d20e5aeac', //Your API KEY
+            'number' => $contact_number,
+            'message' => $message,
+            'sendername' => 'AZWAYPH'
+        );
+        curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
+        curl_setopt( $ch, CURLOPT_POST, 1 );
+
+        //Send the parameters set above with the request
+        curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
+
+        // Receive response from server
+        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+        $output = curl_exec( $ch );
+        curl_close ($ch);
     }
 }
 

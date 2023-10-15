@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\EmployeeLog;
 use Response;
 use Validator;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,8 @@ class EmployeeController extends Controller
     public function view_employee($employee_id){
         $page_name = 'Employee Details';
         $employee = Employee::find($employee_id);
-        return view('employees.employee',compact('page_name', 'employee'));
+        $employee_logs =EmployeeLog::with('employee_details')->where('employee_id', $employee_id)->get();
+        return view('employees.employee',compact('page_name', 'employee', 'employee_logs'));
     }
     public function employees_add(Request $req){
         $validator = Validator::make($req->all(), [
@@ -42,8 +44,9 @@ class EmployeeController extends Controller
             $data = new Employee();
             $data->fname = $req->employee_fname;
             $data->lname = $req->employee_lname;
-            $data->mname = $req->employee_id_number;
-            $data->id_number = $req->employee_mname;
+            $data->mname = $req->employee_mname;
+            $data->department = $req->employee_department;
+            $data->id_number = $req->employee_id_number;
             $data->position = $req->employee_position;
             $data->status = 'active';
             $data->save();
@@ -73,6 +76,7 @@ class EmployeeController extends Controller
             $data->id_number = $req->employee_id_number;
             $data->fname = $req->employee_fname;
             $data->mname = $req->employee_mname;
+            $data->department = $req->employee_department;
             $data->lname = $req->employee_lname;
             $data->position = $req->employee_position;
             $data->save();
