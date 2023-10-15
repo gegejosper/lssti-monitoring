@@ -88,7 +88,7 @@ class FrontController extends Controller
             $data->save();
             $data->name =  $employee_name;
             if($setting->enable_sms == 'yes'){
-                $this->send_sms($employee_name , 'returned');
+                $this->send_sms($employee_name , 'out');
             }
             return response()->json($data);
         }
