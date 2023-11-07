@@ -4,6 +4,9 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
             <!--begin::Advance Table Widget 4-->
+            <div class="text-center justify-content-center align-items-center mb-10">
+                <img alt="Logo" src="{{asset(config('app.logo'))}}" class="h-150px" />
+            </div>
             <div class="card card-custom card-stretch gutter-b">
                 <!--begin::Header-->
                 <div class="card-header border-0 py-5">
@@ -13,6 +16,8 @@
                         Date: {{$from_date->format('M-d-Y')}} -  {{$to_date->format('M-d-Y')}}
                         @endif</span>
                     </h3>
+                    
+                    
                     <div class="d-flex align-items-center gap-2 gap-lg-3">
                     <!--begin::Filter menu-->
                     <div class="m-0">

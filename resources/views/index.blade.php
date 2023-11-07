@@ -2,6 +2,7 @@
 @section('auth-content')
 <div class="d-flex flex-column flex-lg-row-fluid py-10">
 	<!--begin::Content-->
+	@can('manage-guard')
 	<div class="d-flex flex-center ">
 		<!--begin::Wrapper-->
 		<div class="w-lg-650px p-10 p-lg-15" style="background:#E92404; border-radius:15px;">
@@ -33,6 +34,7 @@
 		<!--end::Wrapper-->
 	</div>
 	<!--end::Content-->
+	@endcan
 	<div class="d-flex flex-center mt-10">
 			
 	</div>
@@ -115,14 +117,16 @@
 								<td id="row_penalty_{{$log->id}}">{{$log->penalty_amount}}</td>
 								<td id="row_status_{{$log->id}}">{{$log->status}}</td>
 								<td id="row_action_{{$log->id}}">
-								@if($log->status != 'returned')
-									<a href="javascript:;" 
-										class="btn btn-icon btn-primary return_employee"
-										data-log_id="{{$log->id}}"
-										data-penalty_amount="{{$setting->penalty}}"
-										data-hour_limit="{{$setting->hours}}"
-										><i class="fa fa-reply"></i></a>
-								@endif
+								@can('manage-guard')
+									@if($log->status != 'returned')
+										<a href="javascript:;" 
+											class="btn btn-icon btn-primary return_employee"
+											data-log_id="{{$log->id}}"
+											data-penalty_amount="{{$setting->penalty}}"
+											data-hour_limit="{{$setting->hours}}"
+											><i class="fa fa-reply"></i></a>
+									@endif
+								@endcan
 								</td>
 							</tr>
 							@endforeach
@@ -146,7 +150,19 @@
 	<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
 		<!--begin::Links-->
 		<div class="d-flex flex-center fw-bold fs-6">
-			<a href="https://azway.ph" class="text-muted text-hover-primary px-2" target="_blank">2023 @ BSCS IV</a>
+			<a href="https://azway.ph" class="text-muted text-hover-primary px-2" target="_blank">2023 @ BSCS IV</a> 
+			@auth
+			<a href="{{ route('logout') }}"  
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"
+            id="signoutbtn">LOGOUT</a></h1>
+    
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				@csrf
+			</form>
+			@else
+			<a href="/login" >LOGIN</a>
+			@endauth
 		</div>
 		<!--end::Links-->
 	</div>
@@ -237,7 +253,7 @@
 				</div>
 				<div class="modal-footer">
 					<input type="hidden" name="employee_id" id="employee_id">
-					<button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
+					<button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-bs-dismiss="modal" aria-label="Close"> <i class=" fas fa-times"></i> Cancel</button>
 					<button type="submit" class="btn btn-primary btn-sm font-weight-bold" id="save_employee_log"> <i class=" fas fa-save"></i> Save</button>
 				</div>
 			</form>
@@ -301,7 +317,7 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
+					<button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-bs-dismiss="modal" aria-label="Close"> <i class=" fas fa-times"></i> Cancel</button>
 					<button type="submit" class="btn btn-primary btn-sm font-weight-bold" id="save_record"> <i class=" fas fa-save"></i> Save</button>
 				</div>
 			</form>

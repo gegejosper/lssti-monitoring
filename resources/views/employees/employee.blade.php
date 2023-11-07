@@ -5,7 +5,7 @@
     <!--begin::Layout-->
     <div class="d-flex flex-column flex-xl-row">
         <!--begin::Sidebar-->
-        <div class="flex-column flex-lg-row-auto w-100 w-xl-350px mb-10">
+        <div class="flex-column flex-lg-row-auto w-100 w-xl-350px mb-10 no-print">
             <!--begin::Card-->
             <div class="card mb-5 mb-xl-8">
                 <!--begin::Card body-->
@@ -32,7 +32,7 @@
                     
                     <div class="separator separator-dashed my-3"></div>
                     <!--begin::Details content-->
-                    <div id="kt_employee_view_details" class="collapse show">
+                    <div id="kt_employee_view_details" class="collapse show no-print">
                         <div class="py-5 fs-6">
                             <!--begin::Badge-->
                             <div class="badge badge-light-info d-inline">{{ucfirst($employee->status)}} Account</div>
@@ -55,7 +55,7 @@
         <!--begin::Content-->
         <div class="flex-lg-row-fluid ms-lg-15">
             <!--begin:::Tabs-->
-            <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-8">
+            <ul class="nav nav-custom nav-tabs nav-line-tabs nav-line-tabs-2x border-0 fs-4 fw-bold mb-8 no-print">
                 <!--begin:::Tab item-->
                 <li class="nav-item">
                     <a class="nav-link text-active-primary pb-4 active" data-bs-toggle="tab" href="#kt_employee_view_overview_tab">Overview</a>
@@ -92,7 +92,9 @@
             <div class="tab-content" id="myTabContent">
                 <!--begin:::Tab pane-->
                 <div class="tab-pane fade active show" id="kt_employee_view_overview_tab" role="tabpanel">
-                    
+                    <div class="text-center justify-content-center align-items-center mb-10">
+                        <img alt="Logo" src="{{asset(config('app.logo'))}}" class="h-150px" />
+                    </div>
                     <!--begin::Card-->
                     <div class="card pt-4 mb-6 mb-xl-9">
                         <!--begin::Card header-->
@@ -159,6 +161,7 @@
                                 <!--end::Table-->
                             </div>
                             <!--end::Card body-->
+                            <button class="btn btn-primary mt-5 no-print" onclick="window.print();"><i class="fas fa-print"></i> Print</button>
                         </div>
                         <!--end::Card-->
                     

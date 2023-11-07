@@ -27,6 +27,10 @@ class RedirectIfAuthenticated
                     $redirect_to = '/panel/admin';
                     return redirect($redirect_to);
                 }
+                if(Auth::user()->hasRole(['guard'])){
+                    $redirect_to = '/';
+                    return redirect($redirect_to);
+                }
                 else{
                     $redirect_to = '/unknown_user';
                     return redirect($redirect_to);

@@ -8,6 +8,13 @@ Forbidden
         403
     </div>
     <div class="message" style="padding: 10px;">
-    Forbidden, back <a href="/">click here.</a>
+        <h1>Forbidden, back  <a href="{{ route('logout') }}"  
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();"
+            id="signoutbtn">Click here.</a></h1>
+    
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
     </div>
 @endsection

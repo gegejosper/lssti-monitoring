@@ -126,28 +126,34 @@ class FrontController extends Controller
 
     public function send_sms($name, $logtype){
         $setting = Setting::first();
-        $contact_number = $setting->contact_number;
+        $contact_numbers = $setting->contact_number;
+        $contact_numbers_array = explode(',', $contact_numbers);
         $message = str_replace(
-            array("#EMPLOYEE_NAME#","#LOG_TYPE#"),
-            array($name, $logtype), $setting->sms_message);
-        $ch = curl_init();
-    
-        $parameters = array(
-            'apikey' => '61fdeb9ce3832a133c5a201d20e5aeac', //Your API KEY
-            'number' => $contact_number,
-            'message' => $message,
-            'sendername' => 'AZWAYPH'
+            array("#EMPLOYEE_NAME#", "#LOG_TYPE#"),
+            array($name, $logtype),
+            $setting->sms_message
         );
-        curl_setopt( $ch, CURLOPT_URL,'https://semaphore.co/api/v4/messages' );
-        curl_setopt( $ch, CURLOPT_POST, 1 );
+        $ch = curl_init();
 
-        //Send the parameters set above with the request
-        curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query( $parameters ) );
+        foreach ($contact_numbers_array as $contact_number) {
+            $parameters = array(
+                'apikey' => '61fdeb9ce3832a133c5a201d20e5aeac', // Your API KEY
+                'number' => trim($contact_number), // Remove leading/trailing spaces
+                'message' => $message,
+                'sendername' => 'AZWAYPH'
+            );
+            curl_setopt($ch, CURLOPT_URL, 'https://semaphore.co/api/v4/messages');
+            curl_setopt($ch, CURLOPT_POST, 1);
 
-        // Receive response from server
-        curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-        $output = curl_exec( $ch );
-        curl_close ($ch);
+            // Send the parameters set above with the request
+            curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($parameters));
+
+            // Receive response from the server
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $output = curl_exec($ch);
+        }
+
+        curl_close($ch);
     }
 }
 
