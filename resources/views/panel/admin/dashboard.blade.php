@@ -1,11 +1,23 @@
 @extends('layouts.panel')
 @section('content')
+<script>
+	// Function to refresh the page
+	function refresh_page() {
+	location.reload();
+	}
+
+	// Set the refresh interval to 5 seconds (5000 milliseconds)
+	var refresh_interval = 5000;
+
+	// Set up the interval to call the refresh_page function
+	var interval_id = setInterval(refresh_page, refresh_interval);
+</script>
 <!--begin::Post-->
 <div class="content flex-row-fluid" id="kt_content">
 						
 	<!--begin::Row-->
 	<div class="row g-5 g-lg-10">
-		<div class="col-lg-4">
+		<div class="col-lg-8">
 			<div class="card card-custom card-stretch gutter-b">
 				<div class="card-body pt-10 pb-20">
 					<h5>Visitor's Log</h5>
