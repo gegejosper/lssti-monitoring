@@ -16,7 +16,7 @@
 <div class="content flex-row-fluid" id="kt_content">
 						
 	<!--begin::Row-->
-	<div class="row g-5 g-lg-10">
+	<div class="row g-5 g-lg-10 justify-content-center">
 		<div class="col-lg-8">
 			<div class="card card-custom card-stretch gutter-b">
 				<div class="card-body pt-10 pb-20">
@@ -47,6 +47,7 @@
 				</div>
 			</div>
 		</div>
+</div><div class="row g-5 g-lg-10 justify-content-center">
 		<div class="col-lg-8">
 		<div class="card card-custom card-stretch gutter-b">
 				<div class="card-body pt-10 pb-20">
