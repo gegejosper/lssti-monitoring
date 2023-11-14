@@ -40,8 +40,6 @@
                             <div class="text-gray-600">{{$employee->id_number}}</div>
                             <div class="fw-bolder mt-5">Position</div>
                             <div class="text-gray-600">{{$employee->position}}</div>
-                            <div class="fw-bolder mt-5">Contact #</div>
-                            <div class="text-gray-600">{{$employee->mobile_num}}</div>
                         </div>
                     </div>
                     <!--end::Details content-->

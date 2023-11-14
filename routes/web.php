@@ -46,6 +46,7 @@ Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
         Route::post('/settings/users/modify', 'UserController@modify_user')->name('modify_user');  
         Route::post('/settings/users/add', 'UserController@add_user')->name('add_user');  
         Route::get('/employees', 'EmployeeController@employees')->name('employees');
+        Route::post('/employees/search', 'EmployeeController@employees_search')->name('employees_search');
         Route::post('/employees/add', 'EmployeeController@employees_add')->name('employees_add');
         Route::post('/employees/update', 'EmployeeController@employees_update')->name('employees_update');
         Route::post('/employees/modify', 'EmployeeController@employees_modify')->name('employees_modify');

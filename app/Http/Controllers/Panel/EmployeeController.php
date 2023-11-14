@@ -100,5 +100,16 @@ class EmployeeController extends Controller
         Log::info($name.' modified '.$data->employee_fname.' '.$data->employee_lname.' into '.$req->employee_status);
         return response()->json($data);
     }
+
+    public function employees_search(Request $req){
+        $searchTerm = '%'.$req->search_query.'%';
+        
+        $employee_result = Employee::where(function($query) use ($searchTerm){
+                $query->where('fname','LIKE', $searchTerm)
+                ->orWhere('lname','LIKE', $searchTerm);
+            })
+            ->take(20)->get();
+        return response()->json($employee_result);
+    }
     
 }
