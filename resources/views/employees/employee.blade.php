@@ -28,13 +28,13 @@
                             $google_chart_api_url = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$url."&choe=UTF-8";
 
                             // let's display the generated QR code
-                            echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'>";
+                            echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'>g";
                         ?>
                         <!-- <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($employee->id)) !!} " class="img-thumbnail"> -->
                         <br>
                         <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$employee->id}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary mt-5" print><i class="fa fa-print"> </i></a> 
                         </div>
-                        <!--end::Avatar-->
+                        <!--end::Avatar-->s
                         <!--begin::Name-->
                         <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{{$employee->lname}}, {{$employee->fname}} {{$employee->mname}}</a>
                         <!--end::Name-->
