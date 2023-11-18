@@ -33,7 +33,7 @@ $url ='#';
                             // let's display the generated QR code
                             echo "<img src='".$qr_code."' alt='".$employee->id."'>";
                         ?>
-                        <!-- <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($employee->id)) !!} " class="img-thumbnail"> -->
+                        
                         <br>
                         <a onclick="PrintImage('https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl={{$employee->id}}&choe=UTF-8')" class="btn btn-xs btn-icon btn-primary mt-5" print><i class="fa fa-print"> </i></a> 
                         </div>
