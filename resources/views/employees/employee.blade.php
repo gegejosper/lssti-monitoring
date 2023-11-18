@@ -1,6 +1,13 @@
 @extends('layouts.panel')
 
 @section('content')
+<?php 
+$url ='#';
+// function encodeURIComponentNew($str){
+// $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
+//     return strtr(rawurlencode($str), $revert);
+// }
+?>
 <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
     <!--begin::Layout-->
     <div class="d-flex flex-column flex-xl-row">
@@ -16,11 +23,7 @@
                         <div class="mb-7 text-center">
                         <?php 
                             //$url = config('app.url').'/customers/qrcode/'.$customer->account_number.'/'.$customer->id;
-                            $url ='#';
-                            function encodeURIComponentNew($str){
-                            $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
-                                return strtr(rawurlencode($str), $revert);
-                            }
+                            
                             $qr_code = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$employee->id."&choe=UTF-8";
                             //echo '<a href="/customers/qrcode?url='.encodeURIComponentNew($qr_code).'" target="_blank">';
                     
