@@ -17,18 +17,18 @@
                         <?php 
                             //$url = config('app.url').'/customers/qrcode/'.$customer->account_number.'/'.$customer->id;
                             $url ='#';
-                            function encodeURIComponent($str){
+                            function encodeURIComponentNew($str){
                             $revert = array('%21'=>'!', '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')');
                                 return strtr(rawurlencode($str), $revert);
                             }
                             $qr_code = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$employee->id."&choe=UTF-8";
-                            echo '<a href="/customers/qrcode?url='.encodeURIComponent($qr_code).'" target="_blank">';
+                            //echo '<a href="/customers/qrcode?url='.encodeURIComponentNew($qr_code).'" target="_blank">';
                     
                             // add the string in the Google Chart API URL
                             $google_chart_api_url = "https://chart.googleapis.com/chart?chs=200x200&cht=qr&chl=".$url."&choe=UTF-8";
 
                             // let's display the generated QR code
-                            echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'></a>";
+                            echo "<img src='".$google_chart_api_url."' alt='".$employee->id."'>";
                         ?>
                         <!-- <img src="data:image/png;base64, {!! base64_encode(QrCode::format('png')->size(200)->generate($employee->id)) !!} " class="img-thumbnail"> -->
                         <br>
