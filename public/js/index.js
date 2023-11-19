@@ -71,6 +71,9 @@ $(document).ready(function() {
         initializeScan();
         $('#employeeModalSearch').modal('show');
     });
+    $(document).on('click', '.close_gate', function() {
+        $('#confirmCloseGateModal').modal('show');
+    });
     $(document).on('click', '#visitor_logbook', function() {
         $('#visitorsLogModal').modal('show');
     });

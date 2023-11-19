@@ -123,6 +123,31 @@ class FrontController extends Controller
         
         return response()->json($employee_log);
     }
+    public function close_gate(Request $req){
+        $setting = Setting::first();
+
+        $employee_logs = EmployeeLog::where('status', 'out')->with('employee_details')->get();
+        foreach($employee_logs as  $employee_log){
+            $employee_name = $employee_log->employee_details->lname.', '.$employee_log->employee_details->fname;
+            $timeOut = Carbon::parse($employee_log->time_out);
+            $timeBack = Carbon::now();
+            $timeConsumed = $timeOut->diffInSeconds($timeBack);
+            
+            $hours = floor($timeConsumed / 3600);
+            $minutes = ($timeConsumed / 60) % 60;
+           
+            $employee_log->time_back = Carbon::now()->toTimeString();
+            $employee_log->time_consumed = $timeConsumed;
+            $employee_log->status ='not returned';
+            $employee_log->penalty_amount = $setting->penalty;
+            $employee_log->save();
+            // if($setting->enable_sms == 'yes'){
+            //     $this->send_sms($employee_name , 'returned');
+            // }
+        }
+        
+        return redirect('/');
+    }
 
     public function send_sms($name, $logtype){
         $setting = Setting::first();

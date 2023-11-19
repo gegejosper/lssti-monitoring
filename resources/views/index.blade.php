@@ -137,19 +137,21 @@
 
 			</div>
 		</div>
-		<div class="col-lg-6">
-			
-			
+		
+		
+	</div>
+	@can('manage-guard')	
+	<div class="row justify-content-center">
+		<div class="col-lg-12 text-center">
+		<a href="javascript:;" class="btn btn-warning close_gate text-dark"><i class="fa fa-lock text-dark"></i> Close Gate</a>
 		</div>
-		<div class="col-lg-6">
-
-			
-		</div>
-	</div>	
+	</div>
+	@endcan
 	<!--begin::Footer-->
 	<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
 		<!--begin::Links-->
 		<div class="d-flex flex-center fw-bold fs-6">
+			
 			<a href="https://azway.ph" class="text-muted text-hover-primary px-2" target="_blank">2023 @ BSCS IV</a> 
 			@auth
 			<a href="{{ route('logout') }}"  
@@ -321,6 +323,40 @@
 					<button type="submit" class="btn btn-primary btn-sm font-weight-bold" id="save_record"> <i class=" fas fa-save"></i> Save</button>
 				</div>
 			</form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="confirmCloseGateModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdrop" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Close the gate?</h5>
+                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                    <span class="svg-icon svg-icon-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="currentColor"></rect>
+                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="currentColor"></rect>
+                        </svg>
+                    </span>
+                    <!--end::Svg Icon-->
+                </div>
+            </div>
+                <div class="modal-body">
+                    @csrf
+                    <div class="alert alert-danger" role="alert"> Are you sure you want to close the gate?</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-warning btn-sm font-weight-bold" data-bs-dismiss="modal"> <i class=" fas fa-times"></i> Cancel</button>
+                    <a href="/close_gate" class="btn btn-danger btn-sm font-weight-bold" id="close_gate"> 
+						<span class="indicator-label">
+                            <i class=" fas fa-check"></i> Yes, Close the Gate
+                        </span>
+                        <span class="indicator-progress">
+                            Please wait... <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                        </span>
+					</a>
+                </div>
         </div>
     </div>
 </div>

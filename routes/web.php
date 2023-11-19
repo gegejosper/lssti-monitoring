@@ -23,6 +23,7 @@ Route::get('/', 'FrontController@index');
 Route::post('/save/record', 'FrontController@save_record');
 Route::post('/save/employee/log', 'FrontController@save_employee_log');
 Route::post('/employee/return', 'FrontController@return_employee');
+Route::get('/close_gate', 'FrontController@close_gate');
 Route::get('/generate-qr-code/{text}', 'GlobalController@generateQrCode')->name('generate-qr-code');
 Route::get('/qrcode_print/{id}', 'GlobalController@generateQrCode')->name('qr-code-print');
 Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
