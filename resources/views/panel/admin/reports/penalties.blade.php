@@ -96,7 +96,7 @@
                                         <td>{{$employee_log->employee_details->id_number}}</td>
                                         <td>{{$employee_log->employee_details->lname}}, {{$employee_log->employee_details->fname}} {{$employee_log->employee_details->mname}}</a>
                                         </td>
-                                        <td>{{\Carbon\Carbon::parse($employee_log->max_created_at)->format('m-d-Y H:i A')}}</td>
+                                        <td>{{\Carbon\Carbon::parse($employee_log->created_at)->format('m-d-Y H:i A')}}</td>
                                         <td id="row_penalty_{{$employee_log->id}}">{{number_format($employee_log->total_penalty,2)}}</td>
                                         
                                     </tr>
