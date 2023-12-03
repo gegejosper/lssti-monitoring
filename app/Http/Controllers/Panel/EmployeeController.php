@@ -8,6 +8,7 @@ use App\Models\Employee;
 use App\Models\EmployeeLog;
 use Response;
 use Validator;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -23,6 +24,26 @@ class EmployeeController extends Controller
         $page_name = 'Employee Details';
         $employee = Employee::find($employee_id);
         $employee_logs =EmployeeLog::with('employee_details')->where('employee_id', $employee_id)->get();
+        return view('employees.employee',compact('page_name', 'employee', 'employee_logs'));
+    }
+    public function view_employee_range(Request $req){
+        //dd($req);
+        $page_name = 'Employee Details';
+        $employee = Employee::find($req->employee_id);
+        $from_date = null;
+        $to_date = null;
+        if (isset($req->from_date) && isset($req->to_date)) {
+            $from_date = Carbon::parse($req->from_date . ' 00:00:00');
+            $to_date = Carbon::parse($req->to_date . ' 23:59:59');
+        }
+        $employee_logs =EmployeeLog::with('employee_details')
+            ->where('employee_id', $req->employee_id)
+            ->when($from_date && $to_date, function ($query) use ($from_date, $to_date) {
+                return $query->whereBetween('created_at', [$from_date->toDateTimeString(), $to_date->toDateTimeString()]);
+            })
+            ->get();
+        
+        //$employee_logs =EmployeeLog::with('employee_details')->where('employee_id', $employee_id)->get();
         return view('employees.employee',compact('page_name', 'employee', 'employee_logs'));
     }
     public function employees_add(Request $req){

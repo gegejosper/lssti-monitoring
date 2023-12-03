@@ -52,6 +52,7 @@ Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
         Route::post('/employees/update', 'EmployeeController@employees_update')->name('employees_update');
         Route::post('/employees/modify', 'EmployeeController@employees_modify')->name('employees_modify');
         Route::get('/employees/{employee_id}', 'EmployeeController@view_employee')->name('view_employee');
+        Route::post('/employees/log/range', 'EmployeeController@view_employee_range')->name('view_employee_range');
         Route::get('/settings/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
         Route::get('/visitors', 'VisitorController@visitors')->name('visitors');
     });
