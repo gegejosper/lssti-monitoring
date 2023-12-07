@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Panel;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Department;
 use App\Models\EmployeeLog;
 use Response;
 use Validator;
@@ -18,7 +19,8 @@ class EmployeeController extends Controller
     public function employees(){
         $page_name = 'Employees';
         $employees = Employee::get();
-        return view('employees.employees',compact('page_name', 'employees'));
+        $departments = Department::get();
+        return view('employees.employees',compact('page_name', 'employees', 'departments'));
     }
     public function view_employee($employee_id){
         $page_name = 'Employee Details';

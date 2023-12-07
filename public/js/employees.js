@@ -160,7 +160,7 @@ $(document).ready(function() {
                   'employee_id_number': $('input[name=edit_employee_id_number]').val(),
                   'employee_lname': $('input[name=edit_employee_lname]').val(),
                   'employee_position': $('input[name=edit_employee_position]').val(),
-                  'employee_department': $('input[name=edit_employee_department]').val(),
+                  'employee_department': $('select[name=edit_employee_department]').val(),
                   'employee_id': $('input[name=edit_employee_id]').val()
               },
               success: function(data) {
@@ -190,6 +190,7 @@ $(document).ready(function() {
                         data-employee_fname="${data.fname}"
                         data-employee_lname="${data.lname}"
                         data-employee_position="${data.position}"
+                        data-department="${data.department}"
                     ><i class="fas fa-pen"></i></a>
                     
                     <a href="javascript:;" id="modifyemployee${data.id}" class="btn btn-sm btn-warning modify-employee"
@@ -245,7 +246,7 @@ $(document).ready(function() {
                   'employee_fname': $('input[name=employee_fname]').val(),
                   'employee_lname': $('input[name=employee_lname]').val(),
                   'employee_mname': $('input[name=employee_mname]').val(),
-                  'employee_department': $('input[name=employee_department]').val(),
+                  'employee_department': $('select[name=employee_department]').val(),
                   'employee_id_number': $('input[name=employee_id_number]').val(),
                   'employee_position': $('input[name=employee_position]').val()
               },

@@ -156,6 +156,8 @@ $(document).ready(function() {
                 'lname': $('input[name=visitors_lname]').val(),
                 'contact_number': $('input[name=contact_number]').val(),
                 'address': $('input[name=address]').val(),
+                'id_number': $('input[name=id_number]').val(),
+                'id_type': $('select[name=id_type]').val(),
                 'purpose': $('input[name=purpose]').val()
             },
             success: function(data) {

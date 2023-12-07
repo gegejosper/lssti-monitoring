@@ -79,6 +79,8 @@
                                         <td>Date</td>
                                         <td>Time</td>
                                         <td>Name</td>
+                                        <td>ID Type</td>
+                                        <td>ID No.</td>
                                         <td>Contact #</td>
                                         <td>Address</td>
                                         <td>Purpose</td>
@@ -90,6 +92,8 @@
                                             <td>{{$visitor->date_visit}}</td>
                                             <td>{{$visitor->time_visit}}</td>
                                             <td>{{$visitor->lname}}, {{$visitor->fname}}</td>
+                                            <td>{{$visitor->id_type}}</td>
+                                            <td>{{$visitor->id_number}}</td>
                                             <td>{{$visitor->contact_number}}</td>
                                             <td>{{$visitor->address}}</td>
                                             <td>{{$visitor->purpose}}</td>

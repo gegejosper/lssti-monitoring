@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Visitor;
 use App\Models\EmployeeLog;
 use App\Models\Employee;
+use App\Models\Department;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +44,11 @@ class AdminController extends Controller
         $page_name = 'Subscribers';
         
         return view('panel.admin.subscribers',compact('page_name'));
+    }
+    public function departments(){
+        $page_name = 'Departments';
+        $departments = Department::get();
+        return view('panel.admin.departments',compact('page_name', 'departments'));
     }
     public function users(){
         $page_name = 'Users';

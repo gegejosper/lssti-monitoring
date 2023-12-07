@@ -140,19 +140,19 @@
 		
 		
 	</div>
-	@can('manage-guard')	
+	<!-- @can('manage-guard')	
 	<div class="row justify-content-center">
 		<div class="col-lg-12 text-center">
 		<a href="javascript:;" class="btn btn-warning close_gate text-dark"><i class="fa fa-lock text-dark"></i> Close Gate</a>
 		</div>
 	</div>
-	@endcan
+	@endcan -->
 	<!--begin::Footer-->
 	<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
 		<!--begin::Links-->
 		<div class="d-flex flex-center fw-bold fs-6">
 			
-			<a href="https://azway.ph" class="text-muted text-hover-primary px-2" target="_blank">2023 @ BSCS IV</a> 
+			<a href="#" class="text-muted text-hover-primary px-2" target="_blank">2023 @ BSCS IV</a> 
 			@auth
 			<a href="{{ route('logout') }}"  
             onclick="event.preventDefault();
@@ -285,6 +285,25 @@
 					@csrf
 					<div class="errors"></div>
 					<div class="card-body">
+						<div class="form-group row mb-5">
+							<label class="col-lg-3 col-form-label">ID Type:</label>
+							<div class="col-lg-9">
+								<select name="id_type" id="id_type" class="form-control">
+									<option value="Drivers License">Drivers License</option>
+									<option value="Company ID">Company ID</option>
+									<option value="PhilHealth ID">PhilHealth ID</option>
+									<option value="UMID">UMID</option>
+									<option value="Voters ID">Voters ID</option>
+									<option value="Others">Others</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group row mb-5">
+							<label class="col-lg-3 col-form-label">ID No:</label>
+							<div class="col-lg-9">
+								<input type="text" class="form-control form-control-solid" placeholder="ID No " name="id_number" id="id_number" required>
+							</div>
+						</div>
 						<div class="form-group row mb-5">
 							<label class="col-lg-3 col-form-label">First Name:</label>
 							<div class="col-lg-9">

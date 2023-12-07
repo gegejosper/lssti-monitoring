@@ -74,6 +74,7 @@
                                             data-employee_fname="{{$employee->fname}}"
                                             data-employee_lname="{{$employee->lname}}"
                                             data-employee_position="{{$employee->position}}"
+                                            data-department="{{$employee->department}}"
                                         ><i class="fas fa-pen"></i></a>
                                         @if($employee->status == 'active')
                                         <a href="javascript:;" id="modifyemployee{{$employee->id}}" class="btn btn-sm btn-warning modify-employee"
@@ -157,7 +158,11 @@
                         <div class="form-group row mb-5">
                             <label class="col-lg-3 col-form-label">Department:</label>
                             <div class="col-lg-9">
-                                <input type="text" class="form-control form-control-solid" placeholder="Employee's Department" name="employee_department" id="employee_department" required>
+                                <select class="form-control" name="employee_department" id="employee_department">
+                                    @foreach($departments as $department)
+                                    <option value="{{$department->department_code}}">{{$department->department_code}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -228,7 +233,11 @@
                     <div class="form-group row mb-5">
                         <label class="col-lg-3 col-form-label">Department:</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control form-control-solid" placeholder="Employee's Department" name="edit_employee_department" id="edit_employee_department" >
+                        <select class="form-control" name="edit_employee_department" id="edit_employee_department">
+                            @foreach($departments as $department)
+                            <option value="{{$department->department_code}}">{{$department->department_code}}</option>
+                            @endforeach
+                        </select>
                         </div>
                     </div>
                     <div class="form-group row">

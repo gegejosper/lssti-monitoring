@@ -55,6 +55,11 @@ Route::namespace('Panel')->prefix('panel')->name('panel.')->group(function() {
         Route::post('/employees/log/range', 'EmployeeController@view_employee_range')->name('view_employee_range');
         Route::get('/settings/logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
         Route::get('/visitors', 'VisitorController@visitors')->name('visitors');
+
+        Route::get('/departments', 'AdminController@departments')->name('departments');
+        Route::post('/department/add', 'DepartmentController@department_add')->name('department_add');
+        Route::post('/department/modify', 'DepartmentController@department_modify')->name('department_modify');
+        Route::post('/department/update', 'DepartmentController@department_update')->name('department_update');
     });
 });
 

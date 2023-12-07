@@ -49,6 +49,8 @@ class FrontController extends Controller
         else {
             $data = new Visitor();
             $data->fname = strtoupper($req->fname);
+            $data->id_number = strtoupper($req->id_number);
+            $data->id_type = strtoupper($req->id_type);
             $data->lname = strtoupper($req->lname);
             $data->contact_number = $req->contact_number;
             $data->address = strtoupper($req->address);
