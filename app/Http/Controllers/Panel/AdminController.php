@@ -122,6 +122,8 @@ class AdminController extends Controller
             ->when($from_date && $to_date, function ($query) use ($from_date, $to_date) {
                 return $query->whereBetween('created_at', [$from_date->toDateTimeString(), $to_date->toDateTimeString()]);
             })
+            ->selectRaw('employee_id, MAX(created_at) as max_created_at')
+            ->selectRaw('SUM(penalty_amount) as total_penalty')
             ->get();
         return view('panel.admin.reports.penalties',compact('page_name', 'employee_logs', 'from_date', 'to_date'));
     }
